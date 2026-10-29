@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Shabdika — Poetry, Ghazals & Stories</title>
+<meta name="description" content="Read and share poetry, ghazals, stories and voice on Shabdika — where words become feelings."/>
+<meta property="og:title" content="Shabdika — Poetry, Ghazals & Stories"/>
+<meta property="og:description" content="Open shared posts right here — reels, photos and poems. Where words become feelings."/>
+<meta property="og:site_name" content="Shabdika"/>
+<meta property="og:type" content="article"/>
+<meta property="og:image" content="https://bgfkcspiofokvgkriptv.supabase.co/storage/v1/object/public/post_media/branding/shabdika-og-logo.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="theme-color" content="#17091f"/>
+<link rel="icon" href="https://bgfkcspiofokvgkriptv.supabase.co/storage/v1/object/public/post_media/branding/shabdika-og-logo.png"/>
+<style>
+  :root { color-scheme: dark; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: -apple-system, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif;
+    background: radial-gradient(1200px 600px at 50% -10%, #3d1146 0%, #17091f 45%, #0d0713 100%);
+    background-attachment: fixed;
+    color: #f3eef9; min-height: 100vh;
+  }
+  /* FIXED HEADER — logo left, download button right, content scrolls beneath */
+  .topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 14px;
+    padding-top: max(10px, env(safe-area-inset-top));
+    background: rgba(23, 9, 31, .82);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+  .brand-logo {
+    width: 40px; height: 40px; border-radius: 12px; object-fit: cover;
+    box-shadow: 0 6px 22px rgba(155,48,208,.45); flex: 0 0 auto;
+  }
+  .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+  .brand-name { font-size: 18px; font-weight: 700; letter-spacing: .3px; }
+  .brand-tag { font-size: 10.5px; color: #b9a8d4; }
+  .dl-btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 9px 16px; border-radius: 999px; text-decoration: none;
+    background: linear-gradient(135deg, #ffd76a, #f0a832); color: #2b1601;
+    font-weight: 700; font-size: 13.5px;
+    box-shadow: 0 6px 18px rgba(240,168,50,.35);
+  }
+  .dl-btn:active { transform: scale(.97); }
+  main { width: 100%; max-width: 540px; margin: 0 auto; padding: 86px 16px 44px; }
+  .card {
+    background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.09);
+    border-radius: 22px; padding: 20px;
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  }
+  .author { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .avatar, .avatar-ph {
+    width: 46px; height: 46px; border-radius: 50%; object-fit: cover; flex: 0 0 auto;
+    background: #4a145c;
+  }
+  .avatar-ph {
+    background: linear-gradient(135deg, #4a145c, #9b30d0);
+    display: grid; place-items: center; font-weight: 700; font-size: 19px; color: #fff;
+  }
+  .a-name { font-weight: 700; font-size: 15.5px; }
+  .a-sub { font-size: 12.5px; color: #b9a8d4; }
+  .title { font-size: 21px; font-weight: 700; line-height: 1.35; margin-bottom: 10px; }
+  .poem { font-size: 16.5px; line-height: 1.75; white-space: pre-wrap; word-break: break-word; color: #ece4f6; padding: 4px 2px; }
+  .divider { width: 46px; height: 2px; border-radius: 2px; margin: 14px auto;
+    background: linear-gradient(90deg, transparent, #ffd76a, transparent); }
+  video { width: 100%; max-height: 72vh; border-radius: 16px; background: #000; margin-bottom: 14px; display: block; }
+  .photo-frame { background: rgba(0,0,0,.35); border-radius: 16px; margin-bottom: 14px; overflow: hidden; }
+  .photo-frame img { width: 100%; max-height: 72vh; object-fit: contain; display: block; }
+  audio { width: 100%; margin-bottom: 14px; }
+  .audio-art { height: 190px; border-radius: 16px; margin-bottom: 14px; display: grid; place-items: center; overflow: hidden;
+    background: linear-gradient(135deg, #3d1146, #6a0dad); }
+  .audio-art img { width: 100%; height: 100%; object-fit: cover; }
+  .audio-art span { font-size: 58px; }
+  .caption { font-size: 15px; line-height: 1.65; white-space: pre-wrap; word-break: break-word; color: #ece4f6; margin-bottom: 14px; }
+  .counts { display: flex; gap: 18px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.09); font-size: 13.5px; color: #cbbfe0; }
+  .counts b { color: #ffd76a; font-weight: 700; }
+  .cta {
+    display: flex; align-items: center; justify-content: center; gap: 9px; width: 100%;
+    margin-top: 18px; padding: 15px; border-radius: 14px; text-decoration: none;
+    font-weight: 700; font-size: 15.5px; color: #fff;
+    background: linear-gradient(135deg, #4a145c, #9b30d0); box-shadow: 0 8px 26px rgba(155,48,208,.4);
+  }
+  .cta.secondary {
+    background: transparent; color: #ffd76a; border: 1.5px solid rgba(255,215,106,.55);
+    box-shadow: none; margin-top: 10px; font-size: 14px; padding: 13px;
+  }
+  .foot { margin-top: 24px; text-align: center; font-size: 12.5px; color: #8d7cab; line-height: 1.6; }
+  .state { text-align: center; padding: 60px 18px 30px; }
+  .state .logo-big {
+    width: 84px; height: 84px; border-radius: 24px; margin: 0 auto 18px; display: block; object-fit: cover;
+    box-shadow: 0 10px 34px rgba(155,48,208,.5);
+  }
+  .state h1 { font-size: 20px; margin-bottom: 8px; }
+  .state p { font-size: 14px; color: #b9a8d4; line-height: 1.6; margin-bottom: 20px; }
+  .spinner { width: 34px; height: 34px; border-radius: 50%; margin: 0 auto 16px;
+    border: 3px solid rgba(255,255,255,.15); border-top-color: #ffd76a; animation: spin .9s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="shabdika://open" aria-label="Shabdika">
+    <img class="brand-logo" src="https://bgfkcspiofokvgkriptv.supabase.co/storage/v1/object/public/post_media/branding/shabdika-og-logo.png" alt="Shabdika logo"/>
+    <span class="brand-text">
+      <span class="brand-name">Shabdika</span>
+      <span class="brand-tag">Where words become feelings</span>
+    </span>
+  </a>
+  <a class="dl-btn" id="hdrDl" href="https://play.google.com/store/apps/details?id=com.shabdika.app" rel="noopener">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 3v10.6l-3.8-3.8-1.4 1.4L13 17.4l6.2-6.2-1.4-1.4-3.8 3.8V3h-2zM5 19v2h16v-2H5z"/></svg>
+    <span>Get App</span>
+  </a>
+</header>
+
+<main>
+  <section id="loading" class="state">
+    <div class="spinner"></div>
+    <p>Loading post…</p>
+  </section>
+
+  <section id="unavailable" class="state hidden">
+    <img class="logo-big" src="https://bgfkcspiofokvgkriptv.supabase.co/storage/v1/object/public/post_media/branding/shabdika-og-logo.png" alt="Shabdika logo"/>
+    <h1>This post isn't available</h1>
+    <p>It may have been deleted or made private by its author.</p>
+    <a class="cta" href="https://play.google.com/store/apps/details?id=com.shabdika.app" rel="noopener">Get the Shabdika app</a>
+  </section>
+
+  <section id="welcome" class="state hidden">
+    <img class="logo-big" src="https://bgfkcspiofokvgkriptv.supabase.co/storage/v1/object/public/post_media/branding/shabdika-og-logo.png" alt="Shabdika logo"/>
+    <h1>Welcome to Shabdika</h1>
+    <p>A home for poetry, ghazals, stories and voice.<br/>Open a shared post link to read it right here.</p>
+    <a class="cta" href="https://play.google.com/store/apps/details?id=com.shabdika.app" rel="noopener">Get the Shabdika app</a>
+  </section>
+
+  <section id="post" class="hidden">
+    <div class="card">
+      <div class="author">
+        <img id="avatar" class="avatar hidden" alt="author avatar"/>
+        <div id="avatarPh" class="avatar-ph hidden"></div>
+        <div>
+          <div class="a-name" id="aName"></div>
+          <div class="a-sub" id="aSub"></div>
+        </div>
+      </div>
+      <div id="media"></div>
+      <div id="textBlock"></div>
+      <div class="counts">
+        <span>♥ <b id="cLikes">0</b></span>
+        <span>💬 <b id="cComments">0</b></span>
+        <span>↻ <b id="cReposts">0</b></span>
+      </div>
+    </div>
+    <a class="cta" id="deepLink" href="#">Open in the Shabdika app</a>
+    <a class="cta secondary" href="https://play.google.com/store/apps/details?id=com.shabdika.app" rel="noopener">Get it on Google Play — it's free</a>
+    <div class="foot">Shabdika · Where words become feelings<br/>Poetry · Ghazals · Stories · Voice</div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var SUPABASE_URL = "https://bgfkcspiofokvgkriptv.supabase.co";
+  var ANON = "sb_publishable_xSVm94tmYLevbThIJUya8Q_srXXQF2z";
+  var PLAY = "https://play.google.com/store/apps/details?id=com.shabdika.app";
+
+  function $(id) { return document.getElementById(id); }
+  function show(id) { $(id).classList.remove("hidden"); }
+  function esc(v) {
+    return String(v == null ? "" : v)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+  function fmtCount(n) {
+    var v = n || 0;
+    if (v >= 1000000) return (v / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
+    if (v >= 1000) return (v / 1000).toFixed(1).replace(/\.0$/, "") + "K";
+    return String(v);
+  }
+  function fmtDate(iso) {
+    try {
+      return new Date(iso).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+    } catch (e) { return ""; }
+  }
+
+  function showUnavailable() {
+    $("loading").classList.add("hidden");
+    show("unavailable");
+  }
+
+  function render(post) {
+    $("aName").textContent = post.author_name || "Writer";
+    $("aSub").textContent = (post.author_username ? "@" + post.author_username : "Writer") +
+      (post.created_at ? " · " + fmtDate(post.created_at) : "");
+    if (post.author_image) {
+      $("avatar").src = post.author_image;
+      $("avatar").classList.remove("hidden");
+    } else {
+      $("avatarPh").textContent = (post.author_name || "W").trim().charAt(0).toUpperCase();
+      $("avatarPh").classList.remove("hidden");
+    }
+    $("cLikes").textContent = fmtCount(post.likes_count);
+    $("cComments").textContent = fmtCount(post.comments_count);
+    $("cReposts").textContent = fmtCount(post.reposts_count);
+    $("deepLink").href = "shabdika://post/" + encodeURIComponent(post.id);
+
+    var media = "";
+    var type = post.type;
+    if (type === "reel" && post.video_url) {
+      media = '<video controls playsinline preload="metadata" poster="' +
+        esc(post.cover_image_url || "") + '"><source src="' + esc(post.video_url) +
+        '" type="video/mp4"/>Your browser does not support embedded videos.</video>';
+    } else if (type === "photo" && post.cover_image_url) {
+      media = '<div class="photo-frame"><img src="' + esc(post.cover_image_url) +
+        '" alt="' + esc(post.title || "Photo by " + (post.author_name || "a writer")) + '"/></div>';
+    } else if (type === "audio" && post.audio_url) {
+      media = '<div class="audio-art">' +
+        (post.cover_image_url ? '<img src="' + esc(post.cover_image_url) + '" alt="cover"/>' : "<span>🎵</span>") +
+        '</div><audio controls preload="metadata" src="' + esc(post.audio_url) + '"></audio>';
+    }
+
+    var text = "";
+    if (media) {
+      var cap = (post.caption || post.title || "").trim();
+      if (cap) text = '<div class="caption">' + esc(cap) + "</div>";
+    } else {
+      var t = (post.title || "").trim();
+      var body = (post.content || post.caption || "").trim();
+      if (t) text += '<div class="title">' + esc(t) + "</div>";
+      if (body) text += '<div class="divider"></div><div class="poem">' + esc(body) + "</div>";
+    }
+    if (!media && !text) {
+      showUnavailable();
+      return;
+    }
+    $("media").innerHTML = media;
+    $("textBlock").innerHTML = text;
+    $("loading").classList.add("hidden");
+    show("post");
+  }
+
+  function init() {
+    $("loading").classList.remove("hidden");
+    var params = new URLSearchParams(location.search);
+    var id = (params.get("id") || "").trim();
+    var okUuid = /^[0-9a-fA-F-]{8,40}$/.test(id);
+
+    if (params.get("status") === "unavailable") { showUnavailable(); return; }
+    if (!okUuid) { $("loading").classList.add("hidden"); show("welcome"); return; }
+
+    // 1) fetch the post (anon RLS: published+not-deleted enforced here too),
+    // 2) then check the author's privacy flag,
+    // 3) render.
+    fetch(SUPABASE_URL + "/rest/v1/posts?id=eq." + encodeURIComponent(id) +
+        "&is_deleted=eq.false&status=eq.published&select=id,type,title,content,caption,video_url,audio_url,cover_image_url,author_uid,author_name,author_username,author_image,is_public,likes_count,reposts_count,comments_count,created_at",
+      { headers: { apikey: ANON, Authorization: "Bearer " + ANON } })
+      .then(function (r) { if (!r.ok) throw new Error("http " + r.status); return r.json(); })
+      .then(function (rows) {
+        if (!rows || !rows.length) { showUnavailable(); return null; }
+        var post = rows[0];
+        if (post.is_public === false) { showUnavailable(); return null; }
+        return fetch(SUPABASE_URL + "/rest/v1/users?uid=eq." + encodeURIComponent(post.author_uid) + "&select=is_private",
+          { headers: { apikey: ANON, Authorization: "Bearer " + ANON } })
+          .then(function (r2) { return r2.ok ? r2.json() : []; })
+          .then(function (users) {
+            var authorPrivate = users && users.length && users[0].is_private === true;
+            if (authorPrivate) { showUnavailable(); return null; }
+            render(post);
+            return null;
+          });
+      })
+      .catch(function () { showUnavailable(); });
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>
